@@ -15,21 +15,11 @@ end
 
 class ExtendExample
   extend HelperMethods
-#
-#   def call_titleize
-#     titleize("this string was called using the command 'titleize'")
-#   end
-#
 end
 
 
 class IncludeExample
   include HelperMethods
-  #
-  # def call_titleize
-  #   titleize("this string was called using the command 'titleize'")
-  # end
-
 end
 
 
