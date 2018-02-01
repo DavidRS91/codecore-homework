@@ -83,15 +83,16 @@ class Board {
 
   moveTaskTo (task,source,target) {
     for (let i = 0; i < this.board[source].length; i += 1) {
+      console.log(this.board[source][i].task);
+      console.log(task);
       if (this.board[source][i].task === task) {
         this.board[target].push(this.board[source][i])
         this.board[source].splice(i,1)
         return this;
         break;
-      } else {
-        return "ERROR: No such task exists in the specified list."
       }
     }
+    return "ERROR: No such task exists in the specified list."
   }
 }
 
