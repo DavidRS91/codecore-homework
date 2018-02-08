@@ -1,0 +1,49 @@
+<%- include('../partials/header') %>
+
+<h1>New Post</h1>
+
+<form action="/cohorts" method="POST" >
+  <div class="form-group">
+      <h4>Team Name</h4>
+    <input
+      placeholder="Team Name"
+      class="form-control"
+      type="text"
+      name="teamName"
+      value=""
+    >
+  </div>
+  <div class="form-group">
+    <h4>Logo URL</h4>
+    <input
+      placeholder="URL for team logo"
+      class="form-control"
+      type="text"
+      name="pictureUrl"
+      value=""
+    >
+  </div>
+  <!--
+  Example of urlencoded data:
+
+  username=steve&content=this+is+my+content
+  -->
+
+  <div class="form-group">
+    <h4>Team Members</h4>
+    <textarea
+      class="form-control"
+      rows='8'
+      cols="80"
+      name='teamMembers'
+      placeholder="Enter your team member's names here (separated by a comma)"
+    ></textarea>
+  </div>
+  <input
+    class="btn btn-outline-primary"
+    type='submit'
+    value='Submit'
+  />
+</form>
+
+<%- include('../partials/footer') %>

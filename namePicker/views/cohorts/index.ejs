@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+<h1>Cohorts!!!</h1>
+
+<div class="clucks-list text-muted">
+<% for ( let t of teams) {%>
+
+
+
+      <div class="card p-3 m-2">
+        <div class="card-body">
+          <div class="card-header bg-white">
+
+        <div class="card-sub-body">
+          <img src="http://i0.kym-cdn.com/entries/icons/original/000/021/033/Screenshot_236.png" class="logo"></img>
+        </div>
+        <div class="card-sub-body col-9">
+        <h3 class="card-title"><strong><%= t.teamName %></strong></h3>
+      </div>
+        </div>
+        <div class="post-content">
+          <p class="card-text"><%= t.teamMembers %></p>
+        </div>
+        <br>
+        <form action="/cohorts/<%= t.id %>" method="GET" >
+        <input
+        class="btn btn-primary"
+        type='submit'
+        value='Submit'
+        />
+        </form>
+      </div>
+      </div>
+      <% } %>
+  </div>
+
+
+<%- include('../partials/footer') %>
+
+<%#
+teamName: teamName,
+pictureUrl: pictureUrl,
+teamMembers: teamMembers %>

@@ -1,0 +1,24 @@
+
+.card-body {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  border: none;
+}
+
+.card-sub-body {
+  box-sizing: border-box;
+  display: flex;
+}
+
+.logo {
+  flex: shrink;
+  max-height: 100px;
+  
+}
