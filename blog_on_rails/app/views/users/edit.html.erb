@@ -24,5 +24,31 @@
 </div>
 
 <% end %>
+<br>
 
 <h2>Change Password</h2>
+
+<%= form_for @user, url:update_password_path do |f| %>
+
+<% if @user.errors.present? %>
+  <p><%= @user.errors.full_messages.join(', ') %></p>
+  <% end %>
+  <div class="">
+    <%= f.label :old_password %>
+    <%= f.password_field :old_password, class: "form-control" %>
+  </div>
+  <div class="">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+
+  <div class="">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+  <br>
+  <div class="">
+    <%= f.submit %>
+  </div>
+
+  <% end %>

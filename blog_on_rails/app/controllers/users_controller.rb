@@ -18,6 +18,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_password
+    @user = User.find params[:id]
+    if @user.authenticate(params[:user][:old_password]) == @user
+      if params[:user][:old_password] == params[:user][:password]
+        flash[:notice] = 'Old password is equal to new password!'
+        render :edit
+      elsif @user.update password_params
+        redirect_to root_path
+      else
+        render :edit
+      end
+    else
+      flash[:notice] = 'Old password is incorrect!'
+      render :edit
+    end
+  end
+
   def create
       @user = User.new user_params
 
@@ -40,5 +57,13 @@ class UsersController < ApplicationController
       :password_confirmation
     )
   end
+
+  def password_params
+    params.require(:user).permit(
+      :password,
+      :password_confirmation
+    )
+  end
+
 
 end
