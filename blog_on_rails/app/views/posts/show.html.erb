@@ -1,0 +1,60 @@
+
+<h2><%= @post.title %></h2>
+
+<p><%= @post.body %></p>
+
+<p><small>
+  Posted <%= time_ago_in_words(@post.created_at)%> ago
+  •
+  Last edited <%= time_ago_in_words @post.updated_at %> ago
+
+</small></p>
+
+<div class="">
+   <%= link_to 'Edit', edit_post_path(@post) %>
+   |
+   <%= link_to 'Delete',
+    post_path(@post),
+    method: :delete,
+    data: {
+      confirm: 'Are you sure?'
+    }
+    %>
+</div>
+
+<h3>Answers</h3>
+
+<%= form_for [@post,@comment] do |f| %>
+<% if @comment.errors.present? %>
+  <%= @comment.errors.full_messages.join(', ') %>
+<% end %>
+<div class="">
+  <%= f.text_area :body, placeholder: "What's on your mind?" %>
+</div>
+<%= f.submit "Answer Question" %>
+<% end %>
+
+<hr>
+<div class="comment-list">
+  <% @comments.each do |comment| %>
+    <div class="comment-list-item">
+      <p><%= comment.body %><br>
+        <small>
+        Posted <%= time_ago_in_words(comment.created_at)%> ago
+      </small>
+      <small>
+        •
+        <%= link_to 'Delete',
+         comment_path(comment),
+         method: :delete,
+         data: {
+           confirm: 'Are you sure?'
+         }
+         %>
+      </small>
+  </p>
+      <hr>
+
+    </div>
+  <% end %>
+</div>
