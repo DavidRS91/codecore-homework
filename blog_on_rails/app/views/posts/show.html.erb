@@ -10,17 +10,23 @@
 
 </small></p>
 
+
+
+<% if can?(:manage, @post) %>
 <div class="">
-   <%= link_to 'Edit', edit_post_path(@post) %>
-   |
-   <%= link_to 'Delete',
-    post_path(@post),
-    method: :delete,
-    data: {
-      confirm: 'Are you sure?'
-    }
-    %>
+  <%= link_to 'Edit', edit_post_path(@post) %>
+  |
+  <%= link_to 'Delete',
+  post_path(@post),
+  method: :delete,
+  data: {
+    confirm: 'Are you sure?'
+  }
+  %>
 </div>
+
+
+<% end %>
 
 <h3>Answers</h3>
 
@@ -43,6 +49,8 @@
         Posted <%= time_ago_in_words(comment.created_at)%> ago
       </small>
       <small>
+
+<% if can?(:manage, comment)  %>
         •
         <%= link_to 'Delete',
          comment_path(comment),
@@ -51,6 +59,7 @@
            confirm: 'Are you sure?'
          }
          %>
+         <% end %>
       </small>
   </p>
       <hr>

@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
 def index
-  @posts = Post.all
+  redirect_to posts_path
 end
 end

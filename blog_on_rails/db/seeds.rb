@@ -29,3 +29,48 @@ end
 #
 # puts "You created #{posts.count} posts"
 # puts "You created #{comments.count} comments"
+
+PASSWORD = 'supersecret'
+
+ User.destroy_all
+ Comment.destroy_all
+ Post.destroy_all
+
+super_user = User.create(
+  first_name: 'Jon',
+  last_name: 'Snow',
+  email: 'js@winterfell.gov',
+  password: PASSWORD,
+  is_admin: true
+)
+
+10.times.each do
+  first_name= Faker::Name.first_name
+  last_name= Faker::Name.last_name
+
+  User.create(
+    first_name: first_name,
+    last_name: last_name,
+    email: "#{first_name.downcase}.#{last_name.downcase}@example.com",
+    password: PASSWORD
+  )
+end
+
+users = User.all
+
+ 1000.times.each do
+   q = Post.create(
+     title: Faker::Dog.name,
+     body: Faker::Lorem.paragraph,
+     user: users.sample
+   )
+   if q.valid?
+   rand(0..10).times.each do
+     Comment.create(
+       body: Faker::Seinfeld.quote,
+       post: q,
+       user: users.sample
+     )
+   end
+ end
+ end

@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-
+  before_action :find_post, only: [:edit,:show,:update,:destroy]
+  before_action :authorize_user!, only: [:edit,:update,:destroy,]
+  before_action :authenticate_user!, only: [:new,:edit,:update,:destroy,:create]
   def index
     @posts = Post.all
   end
@@ -9,11 +11,10 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find params[:id]
   end
 
   def show
-      @post = Post.find params[:id]
+
 
     @comments = @post.comments
     @comment = Comment.new
@@ -22,7 +23,6 @@ class PostsController < ApplicationController
 
   def update
 
-    @post = Post.find params[:id]
     if @post.update post_params
       redirect_to post_path(@post)
     else
@@ -31,8 +31,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
-    @post = Post.find params[:id]
     @post.destroy
     redirect_to posts_path
   end
@@ -40,7 +38,7 @@ class PostsController < ApplicationController
 
   def create
       @post = Post.new post_params
-      # @post.user = current_user
+      @post.user = current_user
 
       if @post.save
         redirect_to post_path(@post)
@@ -54,7 +52,17 @@ private
     def post_params
       #require will extract a nested hash from the params by its keys name
       params.require(:post).permit(:title, :body)
+    end
 
+    def find_post
+      @post = Post.find params[:id]
+    end
+
+    def authorize_user!
+      unless can?(:manage, @post)
+        flash[:alert] = 'Access Denied!'
+        redirect_to new_session_path
+      end
     end
 
 end
