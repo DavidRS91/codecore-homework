@@ -1,0 +1,21 @@
+
+// .navbar-toggler {
+//   border: solid;
+//   border-width: 1px;
+//   border-color: #007bff;
+// }
+
+.posts-body {
+  display: flex;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.post-card {
+  min-width: 450px;
+  border: solid;
+  border-width: 1px;
+  border-color: #D3D3D3;
+  border-radius: 5px;
+  flex-grow: 1;
+}

@@ -1,0 +1,11 @@
+<div class="posts-body">
+<% @posts.each do |post| %>
+  <div class="post-card align-self-stretch m-2 p-1">
+    <div class="card-block">
+      <a href="<%= post_path(post) %>"><h4 class="card-title text-primary"  ><%= post.title %></h4></a>
+      <p class="card-text"><%= post.body.slice(0,50) + ' ...' %></p>
+    </div>
+  </div>
+<% end %>
+
+</div>
